@@ -1,3 +1,5 @@
+CORSAllowOrigins:
+  - "http://localhost:5173"
 Altcha:
   Algorithm: "SHA-384"
   Complexity: 1000000

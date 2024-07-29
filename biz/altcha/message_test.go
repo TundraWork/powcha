@@ -1,9 +1,10 @@
 package altcha
 
 import (
-	"github.com/tundrawork/powcha/biz/altcha/internal"
 	"math"
 	"testing"
+
+	"github.com/tundrawork/powcha/biz/altcha/internal"
 )
 
 func TestMessageString(t *testing.T) {

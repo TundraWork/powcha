@@ -15,7 +15,8 @@ var (
 )
 
 type Config struct {
-	Altcha Altcha `yaml:"Altcha"`
+	CORSAllowOrigins []string `yaml:"CORSAllowOrigins"`
+	Altcha           Altcha   `yaml:"Altcha"`
 }
 
 type Altcha struct {

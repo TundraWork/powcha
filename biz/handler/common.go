@@ -7,6 +7,7 @@ import (
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	"github.com/tundrawork/powcha/biz/altcha"
+	"github.com/tundrawork/powcha/biz/typ"
 )
 
 func Challenge(ctx context.Context, c *app.RequestContext) {
@@ -15,15 +16,24 @@ func Challenge(ctx context.Context, c *app.RequestContext) {
 }
 
 func Validate(ctx context.Context, c *app.RequestContext) {
-	msg := altcha.Message{}
-	if err := c.BindAndValidate(&msg); err != nil {
-		c.JSON(consts.StatusBadRequest, err)
+	ok, err := altcha.ValidateResponse(string(c.Request.Body()), true)
+	if err != nil {
+		logger.Errorf("error decoding response: %v", err)
+		c.JSON(consts.StatusBadRequest, typ.CommonResponse{
+			Code:    consts.StatusBadRequest,
+			Message: "invalid payload",
+		})
 		return
 	}
-	logger.CtxInfof(ctx, "validate request: %v", msg)
-	if altcha.ValidateResponse(msg.EncodeWithBase64(), false) {
-		c.JSON(consts.StatusOK, "valid")
+	if ok {
+		c.JSON(consts.StatusOK, typ.CommonResponse{
+			Code:    consts.StatusOK,
+			Message: "OK",
+		})
 	} else {
-		c.JSON(consts.StatusBadRequest, "invalid")
+		c.JSON(consts.StatusUnauthorized, typ.CommonResponse{
+			Code:    consts.StatusUnauthorized,
+			Message: "invalid solution",
+		})
 	}
 }

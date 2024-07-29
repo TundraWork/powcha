@@ -9,6 +9,7 @@ require (
 	github.com/knadh/koanf/providers/file v1.0.0
 	github.com/knadh/koanf/v2 v2.1.1
 	github.com/pkg/errors v0.9.1
+	github.com/tundrawork/hertz-cors v1.0.0
 )
 
 require (

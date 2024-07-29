@@ -12,7 +12,7 @@ import (
 )
 
 // TextPrefix is the prefix used for the text encoding of the message.
-const TextPrefix = "Altcha "
+const TextPrefix = "PoWCHA "
 
 // Message represents the messages between the client and server.
 type Message struct {

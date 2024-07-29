@@ -7,7 +7,9 @@ import (
 
 func main() {
 	config.Init()
-	h := server.Default()
+	h := server.Default(
+		server.WithHandleMethodNotAllowed(true),
+	)
 	register(h)
 	h.Spin()
 }
