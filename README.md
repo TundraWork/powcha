@@ -34,7 +34,7 @@ A typical PoWCHA verification flow is as follows:
 ```mermaid
 graph TD;
     A[Frontend];
-    B[PoWCHA (me!)];
+    B["PoWCHA (me!)"];
     C[Your Service];
     A-->|fetch challenge|B;
     A-->|submit solution & other data|C-->|validate solution|B;
